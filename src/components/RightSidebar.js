@@ -30,7 +30,7 @@ const RightSidebar = () => {
                 <p className="text-gray-400 text-sm">@username</p>
               </div>
               <div>
-                <button className="px-4 py-1 ml-3 border-none bg-black rounded-full hover:cursor-pointer text-white text-sm">
+                <button className="px-4 py-1 ml-3 border-none bg-black rounded-full hover:cursor-pointer hover:bg-[#cd84f1] hover:text-white text-white text-sm">
                   Profile
                 </button>
               </div>
@@ -50,7 +50,7 @@ const RightSidebar = () => {
                 <p className="text-gray-400 text-sm">@username</p>
               </div>
               <div>
-                <button className="px-4 py-1 ml-3 border-none bg-black rounded-full hover:cursor-pointer text-white text-sm">
+                <button className="px-4 py-1 ml-3 border-none bg-black rounded-full hover:cursor-pointer hover:bg-[#cd84f1] hover:text-white text-white text-sm">
                   Profile
                 </button>
               </div>
@@ -70,7 +70,7 @@ const RightSidebar = () => {
                 <p className="text-gray-400 text-sm">@username</p>
               </div>
               <div>
-                <button className="px-4 py-1 ml-3 border-none bg-black rounded-full hover:cursor-pointer text-white text-sm">
+                <button className="px-4 py-1 ml-3 border-none bg-black rounded-full hover:cursor-pointer hover:bg-[#cd84f1] hover:text-white text-white text-sm">
                   Profile
                 </button>
               </div>

@@ -3,6 +3,7 @@ import React from "react";
 import { IoHome, IoLogOut } from "react-icons/io5";
 import { FaSearch, FaUser, FaStar } from "react-icons/fa";
 import { IoIosNotifications } from "react-icons/io";
+import { Link } from "react-router-dom";
 const LeftSidebar = () => {
   return (
     <div className="w-[20%] mr-4">
@@ -16,12 +17,15 @@ const LeftSidebar = () => {
           />
         </div>
         <div>
-          <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
+          <Link
+            to="/"
+            className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer"
+          >
             <div>
               <IoHome size={"22px"} />
             </div>
             <h1 className="font-semibold text-lg ml-2">Home</h1>
-          </div>
+          </Link>
         </div>
         <div>
           <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
@@ -36,12 +40,15 @@ const LeftSidebar = () => {
             </div>
             <h1 className="font-semibold text-lg ml-2">Notifications</h1>
           </div>
-          <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
+          <Link
+            to="/profile"
+            className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer"
+          >
             <div>
               <FaUser size={"24px"} />
             </div>
             <h1 className="font-semibold text-lg ml-2">Profile</h1>
-          </div>
+          </Link>
           <div className="flex items-center my-2 px-4 py-2 hover:bg-gray-200 rounded-full hover:cursor-pointer">
             <div>
               <FaStar size={"24px"} />
