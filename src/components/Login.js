@@ -1,10 +1,58 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { USER_API_END_POINT } from "../utils/constant.js";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignup, setIsSignup] = useState(true);
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [conpassword, setConPassword] = useState("");
+  const navigate = useNavigate();
+
   const loginSignupHnadler = () => {
     setIsSignup(!isSignup);
   };
+
+  const SubmitHandler = async (e) => {
+    e.preventDefault();
+    if (isSignup) {
+      //do login
+      try {
+        const res = await axios.post(`${USER_API_END_POINT}/login`, {
+          username,
+          password,
+        });
+        navigate("/");
+        if (res.data.success) {
+          toast.success(res.data.message);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      //do signup
+      try {
+        const res = await axios.post(`${USER_API_END_POINT}/createUser`, {
+          name,
+          username,
+          email,
+          password,
+          conpassword,
+        });
+        if (res.data.success) {
+          setIsSignup(true);
+          toast.success(res.data.message);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       <div className="flex items-center">
@@ -18,15 +66,19 @@ const Login = () => {
           <h1 className="text-center font-bold text-3xl my-3">
             {!isSignup ? "Signup" : "Login"}
           </h1>
-          <form className="flex flex-col">
+          <form onSubmit={SubmitHandler} className="flex flex-col">
             {!isSignup && (
               <>
                 <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className=" my-2 px-4 py-2  w-full rounded-full  border border-gray-400"
                   type="text"
                   placeholder="Enter Name"
                 />
                 <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className=" my-2 px-4 py-2  w-full rounded-full  border border-gray-400"
                   type="email"
                   placeholder="Enter Email"
@@ -34,17 +86,23 @@ const Login = () => {
               </>
             )}
             <input
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               className=" my-2 px-4 py-2  w-full rounded-full  border border-gray-400"
               type="text"
               placeholder="Enter Username"
             />
             <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className=" my-2 px-4 py-2  w-full rounded-full  border border-gray-400"
               type="password"
               placeholder="Enter Password"
             />
             {!isSignup ? (
               <input
+                value={conpassword}
+                onChange={(e) => setConPassword(e.target.value)}
                 className=" my-2 px-4 py-2  w-full rounded-full  border border-gray-400"
                 type="password"
                 placeholder="Confirm Password"
