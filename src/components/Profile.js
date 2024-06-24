@@ -2,7 +2,14 @@ import React from "react";
 import { IoArrowBack } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Avatar from "react-avatar";
+import { useSelector } from "react-redux";
+import useGetProfile from "../hooks/useGetProfile";
+
 const Profile = () => {
+  const { user } = useSelector((store) => store.user);
+  console.log(user?._id);
+  useGetProfile(user?._id);
+
   return (
     <div className="w-[55%] border-l border-r border-gray-200 p-1">
       <div className="flex justify-between">
@@ -14,7 +21,7 @@ const Profile = () => {
             <IoArrowBack size={"18px"} />
           </Link>
           <div className="ml-4">
-            <h1 className="font-semibold">USER NAME</h1>
+            <h1 className="font-semibold">{user.name}</h1>
             <p className="text-gray-600 text-sm">0 posts</p>
           </div>
         </div>
@@ -52,8 +59,8 @@ const Profile = () => {
       </div>
       <div className="my-2 p-3 border-b border-gray-200">
         <div>
-          <h1 className="text-lg font-bold ">USER NAME</h1>
-          <p className="text-gray-600">@username</p>
+          <h1 className="text-lg font-bold ">{user.name}</h1>
+          <p className="text-gray-600">@{user.username}</p>
         </div>
         <p className="text-sm text-gray-900">
           Bio | Bio Bio | Bio Bio | Bio Bio | Bio Bio | Bio Bio | Bio Bio | Bio
