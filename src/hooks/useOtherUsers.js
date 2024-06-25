@@ -2,24 +2,24 @@ import axios from "axios";
 import { USER_API_END_POINT } from "../utils/constant.js";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getMyProfile } from "../redux/userSlice";
+import { getOtherUsers } from "../redux/userSlice";
 
-const useGetProfile = (id) => {
+const useOtherUsers = (id) => {
   const dispatch = useDispatch();
   useEffect(() => {
     //use this useEffect whenever doing network call
-    const fetchMyProfile = async () => {
+    const fetchOtherUsers = async () => {
       try {
-        const res = await axios.get(`${USER_API_END_POINT}/profile/${id}`, {
+        const res = await axios.get(`${USER_API_END_POINT}/otheruser/${id}`, {
           withCredentials: true,
         });
         console.log(res);
-        dispatch(getMyProfile(res?.data?.user));
+        dispatch(getOtherUsers(res?.data?.otherUser));
       } catch (error) {
         console.log(error);
       }
     };
-    fetchMyProfile();
+    fetchOtherUsers();
   }, [id, dispatch]);
 };
-export default useGetProfile;
+export default useOtherUsers;

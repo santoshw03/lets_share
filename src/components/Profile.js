@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import useGetProfile from "../hooks/useGetProfile";
 
 const Profile = () => {
-  const { user } = useSelector((store) => store.user);
+  const { user, profile } = useSelector((store) => store.user);
   console.log(user?._id);
   useGetProfile(user?._id);
 
@@ -21,7 +21,7 @@ const Profile = () => {
             <IoArrowBack size={"18px"} />
           </Link>
           <div className="ml-4">
-            <h1 className="font-semibold">{user.name}</h1>
+            <h1 className="font-semibold">{profile?.name}</h1>
             <p className="text-gray-600 text-sm">0 posts</p>
           </div>
         </div>
@@ -59,8 +59,8 @@ const Profile = () => {
       </div>
       <div className="my-2 p-3 border-b border-gray-200">
         <div>
-          <h1 className="text-lg font-bold ">{user.name}</h1>
-          <p className="text-gray-600">@{user.username}</p>
+          <h1 className="text-lg font-bold ">{profile?.name}</h1>
+          <p className="text-gray-600">@{profile?.username}</p>
         </div>
         <p className="text-sm text-gray-900">
           Bio | Bio Bio | Bio Bio | Bio Bio | Bio Bio | Bio Bio | Bio Bio | Bio

@@ -25,10 +25,19 @@ const Login = () => {
     if (isSignup) {
       //do login
       try {
-        const res = await axios.post(`${USER_API_END_POINT}/login`, {
-          username,
-          password,
-        });
+        const res = await axios.post(
+          `${USER_API_END_POINT}/login`,
+          {
+            username,
+            password,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+            },
+            withCredentials: true,
+          }
+        );
         dispatch(getUser(res?.data?.user));
         if (res.data.success) {
           navigate("/");
@@ -40,13 +49,22 @@ const Login = () => {
     } else {
       //do signup
       try {
-        const res = await axios.post(`${USER_API_END_POINT}/createUser`, {
-          name,
-          username,
-          email,
-          password,
-          conpassword,
-        });
+        const res = await axios.post(
+          `${USER_API_END_POINT}/createUser`,
+          {
+            name,
+            username,
+            email,
+            password,
+            conpassword,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json; charset=utf-8",
+            },
+            withCredentials: true,
+          }
+        );
         if (res.data.success) {
           setIsSignup(true);
           toast.success(res.data.message);
